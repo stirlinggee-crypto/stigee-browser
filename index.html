@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Simple Browser</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #toolbar {
+            padding: 10px;
+            background: #f0f0f0;
+            display: flex;
+            gap: 10px;
+        }
+        #url {
+            flex: 1;
+            padding: 5px;
+            font-size: 16px;
+        }
+        iframe {
+            width: 100%;
+            height: calc(100vh - 50px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="toolbar">
+        <input type="text" id="url" placeholder="Enter a website URL..." />
+        <button onclick="loadPage()">Go</button>
+    </div>
+
+    <iframe id="viewer" src="https://example.com"></iframe>
+
+    <script>
+        function loadPage() {
+            const urlField = document.getElementById('url');
+            let url = urlField.value.trim();
+
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'https://' + url;
+            }
+
+            document.getElementById('viewer').src = url;
+        }
+    </script>
+</body>
+</html>
